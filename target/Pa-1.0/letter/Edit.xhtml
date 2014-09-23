@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LetterEditDlg" widgetVar="LetterEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditLetterTitle}">
+            <h:form id="LetterEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{letterController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditLetterLabel_employee}" for="employee" />
+                        <p:selectOneMenu id="employee" value="#{letterController.selected.employee}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="employeeItem"
+                                           itemValue="#{employeeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_process}" for="process" />
+                        <p:selectOneMenu id="process" value="#{letterController.selected.process}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{processController.itemsAvailableSelectOne}"
+                                           var="processItem"
+                                           itemValue="#{processItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_branch}" for="branch" />
+                        <p:selectOneMenu id="branch" value="#{letterController.selected.branch}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{branchController.itemsAvailableSelectOne}"
+                                           var="branchItem"
+                                           itemValue="#{branchItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_letter_No}" for="letter_No" />
+                        <p:inputText id="letter_No" value="#{letterController.selected.letter_No}" title="#{bundle.EditLetterTitle_letter_No}" />
+                        <p:outputLabel value="#{bundle.EditLetterLabel_letter_contants}" for="letter_contants" />
+                        <p:inputTextarea rows="4" cols="30" id="letter_contants" value="#{letterController.selected.letter_contants}" title="#{bundle.EditLetterTitle_letter_contants}" />
+                        <p:outputLabel value="#{bundle.EditLetterLabel_letter_date}" for="letter_date" />
+                        <p:calendar id="letter_date" pattern="MM/dd/yyyy" value="#{letterController.selected.letter_date}" title="#{bundle.EditLetterTitle_letter_date}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_receive_At}" for="receive_At" />
+                        <p:calendar id="receive_At" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.receive_At}" title="#{bundle.EditLetterTitle_receive_At}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_forwarded_for_approval_at}" for="forwarded_for_approval_at" />
+                        <p:calendar id="forwarded_for_approval_at" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.forwarded_for_approval_at}" title="#{bundle.EditLetterTitle_forwarded_for_approval_at}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_approved_at}" for="approved_at" />
+                        <p:calendar id="approved_at" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.approved_at}" title="#{bundle.EditLetterTitle_approved_at}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_approved_by}" for="approved_by" />
+                        <p:selectOneMenu id="approved_by" value="#{letterController.selected.approved_by}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="approved_byItem"
+                                           itemValue="#{approved_byItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_completedAt}" for="completedAt" />
+                        <p:calendar id="completedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.completedAt}" title="#{bundle.EditLetterTitle_completedAt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_posted_at}" for="posted_at" />
+                        <p:calendar id="posted_at" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.posted_at}" title="#{bundle.EditLetterTitle_posted_at}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditLetterLabel_remarks}" for="remarks" />
+                        <p:inputTextarea rows="4" cols="30" id="remarks" value="#{letterController.selected.letter_remarks}" title="#{bundle.EditLetterTitle_remarks}" />
+                        <p:outputLabel value="#{bundle.EditLetterLabel_remarks_for_delay}" for="remarks_for_delay" />
+                        <p:inputTextarea rows="4" cols="30" id="remarks_for_delay" value="#{letterController.selected.remarks_for_delay}" title="#{bundle.EditLetterTitle_remarks_for_delay}" />
+                        <p:outputLabel value="#{bundle.EditLetterLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{letterController.selected.id}" title="#{bundle.EditLetterTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{letterController.update}" value="#{bundle.Save}" update="display,:LetterListForm:datalist,:growl" oncomplete="handleSubmit(args, 'LetterEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LetterEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

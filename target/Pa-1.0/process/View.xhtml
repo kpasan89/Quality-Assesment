@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProcessViewDlg" widgetVar="ProcessViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProcessTitle}">
+            <h:form id="ProcessViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{processController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProcessLabel_english_name}"/>
+                        <h:outputText value="#{processController.selected.english_name}" title="#{bundle.ViewProcessTitle_english_name}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_sinhala_name}"/>
+                        <h:outputText value="#{processController.selected.sinhala_name}" title="#{bundle.ViewProcessTitle_sinhala_name}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_tamil_name}"/>
+                        <h:outputText value="#{processController.selected.tamil_name}" title="#{bundle.ViewProcessTitle_tamil_name}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_english_description}"/>
+                        <h:outputText value="#{processController.selected.english_description}" title="#{bundle.ViewProcessTitle_english_description}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_sinhala_description}"/>
+                        <h:outputText value="#{processController.selected.sinhala_description}" title="#{bundle.ViewProcessTitle_sinhala_description}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_tmail_description}"/>
+                        <h:outputText value="#{processController.selected.tmail_description}" title="#{bundle.ViewProcessTitle_tmail_description}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_branch}"/>
+                        <h:outputText value="#{processController.selected.branch}" title="#{bundle.ViewProcessTitle_branch}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_process_number}"/>
+                        <h:outputText value="#{processController.selected.process_number}" title="#{bundle.ViewProcessTitle_process_number}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProcessViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerformanceAnalysisRecordViewDlg" widgetVar="PerformanceAnalysisRecordViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewPerformanceAnalysisRecordTitle}">
+            <h:form id="PerformanceAnalysisRecordViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{performanceAnalysisRecordController.selected != null}">
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_id}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.id}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_fromDate}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.fromDate}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_fromDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_toDate}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.toDate}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_toDate}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_analysisYear}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.analysisYear}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_analysisYear}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_analysisMonth}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.analysisMonth}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_analysisMonth}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_analysisDate}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.analysisDate}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_analysisDate}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_employee}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.employee}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_employee}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_branch}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.branch}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_branch}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_process}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.process}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_process}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_completed_on_time_count}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.completed_on_time_count}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_completed_on_time_count}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_delayed_count}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.delayed_count}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_delayed_count}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_completed_on_time_percentage}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.completed_on_time_percentage}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_completed_on_time_percentage}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_delayed_count_percentage}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.delayed_count_percentage}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_delayed_count_percentage}"/>
+                        <h:outputText value="#{bundle.ViewPerformanceAnalysisRecordLabel_causes_for_delay}"/>
+                        <h:outputText value="#{performanceAnalysisRecordController.selected.causes_for_delay}" title="#{bundle.ViewPerformanceAnalysisRecordTitle_causes_for_delay}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="PerformanceAnalysisRecordViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

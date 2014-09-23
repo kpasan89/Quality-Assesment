@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="BranchCreateDlg" widgetVar="BranchCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateBranchTitle}">
+            <h:form id="BranchCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{branchController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_english_name}" for="english_name" />
+                        <p:inputText id="english_name" value="#{branchController.selected.english_name}" title="#{bundle.CreateBranchTitle_english_name}" />
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_sinhala_name}" for="sinhala_name" />
+                        <p:inputText id="sinhala_name" value="#{branchController.selected.sinhala_name}" title="#{bundle.CreateBranchTitle_sinhala_name}" />
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_tamil_name}" for="tamil_name" />
+                        <p:inputText id="tamil_name" value="#{branchController.selected.tamil_name}" title="#{bundle.CreateBranchTitle_tamil_name}" />
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_english_description}" for="english_description" />
+                        <p:inputTextarea rows="4" cols="30" id="english_description" value="#{branchController.selected.english_description}" title="#{bundle.CreateBranchTitle_english_description}" />
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_sinhala_description}" for="sinhala_description" />
+                        <p:inputTextarea rows="4" cols="30" id="sinhala_description" value="#{branchController.selected.sinhala_description}" title="#{bundle.CreateBranchTitle_sinhala_description}" />
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_tmail_description}" for="tmail_description" />
+                        <p:inputTextarea rows="4" cols="30" id="tmail_description" value="#{branchController.selected.tmail_description}" title="#{bundle.CreateBranchTitle_tmail_description}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{branchController.create}" value="#{bundle.Save}" update="display,:BranchListForm:datalist,:growl" oncomplete="handleSubmit(args,'BranchCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="BranchCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

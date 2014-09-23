@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProcessCreateDlg" widgetVar="ProcessCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProcessTitle}">
+            <h:form id="ProcessCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{processController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_english_name}" for="english_name" />
+                        <p:inputText id="english_name" value="#{processController.selected.english_name}" title="#{bundle.CreateProcessTitle_english_name}" />
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_sinhala_name}" for="sinhala_name" />
+                        <p:inputText id="sinhala_name" value="#{processController.selected.sinhala_name}" title="#{bundle.CreateProcessTitle_sinhala_name}" />
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_tamil_name}" for="tamil_name" />
+                        <p:inputText id="tamil_name" value="#{processController.selected.tamil_name}" title="#{bundle.CreateProcessTitle_tamil_name}" />
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_english_description}" for="english_description" />
+                        <p:inputTextarea rows="4" cols="30" id="english_description" value="#{processController.selected.english_description}" title="#{bundle.CreateProcessTitle_english_description}" />
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_sinhala_description}" for="sinhala_description" />
+                        <p:inputTextarea rows="4" cols="30" id="sinhala_description" value="#{processController.selected.sinhala_description}" title="#{bundle.CreateProcessTitle_sinhala_description}" />
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_tmail_description}" for="tmail_description" />
+                        <p:inputTextarea rows="4" cols="30" id="tmail_description" value="#{processController.selected.tmail_description}" title="#{bundle.CreateProcessTitle_tmail_description}" />
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_branch}" for="branch" />
+
+                        <h:panelGroup id="branch" >
+                            <p:selectOneMenu id="branchEn" value="#{processController.selected.branch}" rendered="#{sessionController.language eq 'en'}" >
+                                <f:selectItems value="#{branchController.itemsAvailableSelectOne}"
+                                               var="branchItem" 
+                                               itemValue="#{branchItem}" itemLabel="#{branchItem.english_name}"/>
+                            </p:selectOneMenu>
+
+                            <p:selectOneMenu id="branchSi" value="#{processController.selected.branch}"  rendered="#{sessionController.language eq 'si'}" >
+                                <f:selectItems value="#{branchController.itemsAvailableSelectOne}"
+                                               var="branchItem" 
+                                               itemValue="#{branchItem}" itemLabel="#{branchItem.sinhala_name}"/>
+                            </p:selectOneMenu>
+
+
+                            <p:selectOneMenu id="branchTa" value="#{processController.selected.branch}"  rendered="#{sessionController.language eq 'ta'}" >
+                                <f:selectItems value="#{branchController.itemsAvailableSelectOne}"
+                                               var="branchItem" 
+                                               itemValue="#{branchItem}" itemLabel="#{branchItem.tamil_name}"/>
+                            </p:selectOneMenu>
+
+                        </h:panelGroup>
+
+
+
+                        <p:outputLabel value="#{bundle.CreateProcessLabel_process_number}" for="process_number" />
+                        <p:inputText id="process_number" value="#{processController.selected.process_number}" title="#{bundle.CreateProcessTitle_process_number}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{processController.create}" value="#{bundle.Save}" update="display,:ProcessListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProcessCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProcessCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="PerformanceAnalysisRecordEditDlg" widgetVar="PerformanceAnalysisRecordEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditPerformanceAnalysisRecordTitle}">
+            <h:form id="PerformanceAnalysisRecordEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{performanceAnalysisRecordController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{performanceAnalysisRecordController.selected.id}" title="#{bundle.EditPerformanceAnalysisRecordTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_fromDate}" for="fromDate" />
+                        <p:calendar id="fromDate" pattern="MM/dd/yyyy" value="#{performanceAnalysisRecordController.selected.fromDate}" title="#{bundle.EditPerformanceAnalysisRecordTitle_fromDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_toDate}" for="toDate" />
+                        <p:calendar id="toDate" pattern="MM/dd/yyyy" value="#{performanceAnalysisRecordController.selected.toDate}" title="#{bundle.EditPerformanceAnalysisRecordTitle_toDate}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_analysisYear}" for="analysisYear" />
+                        <p:inputText id="analysisYear" value="#{performanceAnalysisRecordController.selected.analysisYear}" title="#{bundle.EditPerformanceAnalysisRecordTitle_analysisYear}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_analysisMonth}" for="analysisMonth" />
+                        <p:inputText id="analysisMonth" value="#{performanceAnalysisRecordController.selected.analysisMonth}" title="#{bundle.EditPerformanceAnalysisRecordTitle_analysisMonth}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_analysisDate}" for="analysisDate" />
+                        <p:inputText id="analysisDate" value="#{performanceAnalysisRecordController.selected.analysisDate}" title="#{bundle.EditPerformanceAnalysisRecordTitle_analysisDate}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_employee}" for="employee" />
+                        <p:selectOneMenu id="employee" value="#{performanceAnalysisRecordController.selected.employee}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
+                                           var="employeeItem"
+                                           itemValue="#{employeeItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_branch}" for="branch" />
+                        <p:selectOneMenu id="branch" value="#{performanceAnalysisRecordController.selected.branch}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{branchController.itemsAvailableSelectOne}"
+                                           var="branchItem"
+                                           itemValue="#{branchItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_process}" for="process" />
+                        <p:selectOneMenu id="process" value="#{performanceAnalysisRecordController.selected.process}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{processController.itemsAvailableSelectOne}"
+                                           var="processItem"
+                                           itemValue="#{processItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_completed_on_time_count}" for="completed_on_time_count" />
+                        <p:inputText id="completed_on_time_count" value="#{performanceAnalysisRecordController.selected.completed_on_time_count}" title="#{bundle.EditPerformanceAnalysisRecordTitle_completed_on_time_count}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_delayed_count}" for="delayed_count" />
+                        <p:inputText id="delayed_count" value="#{performanceAnalysisRecordController.selected.delayed_count}" title="#{bundle.EditPerformanceAnalysisRecordTitle_delayed_count}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_completed_on_time_percentage}" for="completed_on_time_percentage" />
+                        <p:inputText id="completed_on_time_percentage" value="#{performanceAnalysisRecordController.selected.completed_on_time_percentage}" title="#{bundle.EditPerformanceAnalysisRecordTitle_completed_on_time_percentage}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_delayed_count_percentage}" for="delayed_count_percentage" />
+                        <p:inputText id="delayed_count_percentage" value="#{performanceAnalysisRecordController.selected.delayed_count_percentage}" title="#{bundle.EditPerformanceAnalysisRecordTitle_delayed_count_percentage}" />
+                        <p:outputLabel value="#{bundle.EditPerformanceAnalysisRecordLabel_causes_for_delay}" for="causes_for_delay" />
+                        <p:inputTextarea rows="4" cols="30" id="causes_for_delay" value="#{performanceAnalysisRecordController.selected.causes_for_delay}" title="#{bundle.EditPerformanceAnalysisRecordTitle_causes_for_delay}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{performanceAnalysisRecordController.update}" value="#{bundle.Save}" update="display,:PerformanceAnalysisRecordListForm:datalist,:growl" oncomplete="handleSubmit(args, 'PerformanceAnalysisRecordEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="PerformanceAnalysisRecordEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
