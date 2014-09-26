@@ -11,16 +11,18 @@
         <p:dialog id="LetterCreateDlg" widgetVar="LetterCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLetterTitle}">
             <h:form id="LetterCreateForm">
                 <h:panelGroup id="display">
-                    <p:commandButton actionListener="#{letterController.create}" value="#{bundle.Save}" update="display,:LetterListForm:datalist,:growl" oncomplete="handleSubmit(args,'LetterCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="LetterCreateDialog.hide()"/>
-
                     <p:panelGrid columns="2" rendered="#{letterController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLetterLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{letterController.selected.subject}" >
+                            <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateLetterLabel_employee}" for="employee" />
                         <p:selectOneMenu id="employee" value="#{letterController.selected.employee}" >
                             <f:selectItems value="#{employeeController.itemsAvailableSelectOne}"
                                            var="employeeItem"
-                                           itemValue="#{employeeItem}"
-                                           itemLabel="#{employeeItem.sinhala_name}"/>
+                                           itemValue="#{employeeItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateLetterLabel_process}" for="process" />
                         <p:selectOneMenu id="process" value="#{letterController.selected.process}" >
@@ -56,11 +58,51 @@
                         <p:calendar id="completedAt" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.completedAt}" title="#{bundle.EditLetterTitle_completedAt}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.CreateLetterLabel_posted_at}" for="posted_at" />
                         <p:calendar id="posted_at" pattern="MM/dd/yyyy HH:mm:ss" value="#{letterController.selected.posted_at}" title="#{bundle.EditLetterTitle_posted_at}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateLetterLabel_remarks}" for="remarks" />
-                        <p:inputTextarea rows="4" cols="30" id="remarks" value="#{letterController.selected.letter_remarks}" title="#{bundle.CreateLetterTitle_remarks}" />
+                        <p:outputLabel value="#{bundle.CreateLetterLabel_letter_remarks}" for="letter_remarks" />
+                        <p:inputTextarea rows="4" cols="30" id="letter_remarks" value="#{letterController.selected.letter_remarks}" title="#{bundle.CreateLetterTitle_letter_remarks}" />
                         <p:outputLabel value="#{bundle.CreateLetterLabel_remarks_for_delay}" for="remarks_for_delay" />
                         <p:inputTextarea rows="4" cols="30" id="remarks_for_delay" value="#{letterController.selected.remarks_for_delay}" title="#{bundle.CreateLetterTitle_remarks_for_delay}" />
+
+
+                        <p:selectOneMenu id="cmbAddingReason" value="#{letterController.letterReason.reason}" >
+                            <f:selectItem itemLabel="Select a reason" ></f:selectItem>
+                            <f:selectItems value="#{reasonsController.itemsAvailableSelectOne}" var="r"
+                                           itemLabel="#{r.sinhala_name}" itemValue="#{r}" ></f:selectItems>
+                        </p:selectOneMenu>
+
+                        <p:commandButton id="btnAddReason" value="Add Reason" action="#{letterController.addLetterReason()}" 
+                                         process="btnAddReason cmbAddingReason" update="tblReasons" ></p:commandButton>
+
+
+                        <p:dataTable id="tblReasons" value="#{letterController.selected.letterReasons}"  var="lr">
+                            <p:column >
+                                #{lr.reason.sinhala_name}
+                            </p:column>
+                            <p:column >
+                                #{lr.reason.tamil_name}
+                            </p:column>
+                            <p:column >
+                                #{lr.reason.english_name}
+                            </p:column>
+                        </p:dataTable>
+
+                        <table >
+                            <ui:repeat value="#{letterController.selected.letterProcessMessurment}" var="lpm" >
+                                <tr>
+                                    <td>
+                                        #{lpm.processMessurment.nameSi}
+                                    </td>
+
+                                    <td>
+                                        <p:inputText value="#{lpm.timeLaken}" ></p:inputText>
+                                    </td>
+                                </tr>
+                            </ui:repeat>
+                        </table>
+
                     </p:panelGrid>
+                    <p:commandButton actionListener="#{letterController.create}" value="#{bundle.Save}" update="display,:LetterListForm:datalist,:growl" oncomplete="handleSubmit(args,'LetterCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LetterCreateDialog.hide()"/>
                 </h:panelGroup>
             </h:form>
         </p:dialog>

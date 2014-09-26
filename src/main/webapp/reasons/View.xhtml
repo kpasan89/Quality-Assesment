@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReasonsViewDlg" widgetVar="ReasonsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewReasonsTitle}">
+            <h:form id="ReasonsViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reasonsController.selected != null}">
+                        <h:outputText value="#{bundle.ViewReasonsLabel_english_name}"/>
+                        <h:outputText value="#{reasonsController.selected.english_name}" title="#{bundle.ViewReasonsTitle_english_name}"/>
+                        <h:outputText value="#{bundle.ViewReasonsLabel_sinhala_name}"/>
+                        <h:outputText value="#{reasonsController.selected.sinhala_name}" title="#{bundle.ViewReasonsTitle_sinhala_name}"/>
+                        <h:outputText value="#{bundle.ViewReasonsLabel_tamil_name}"/>
+                        <h:outputText value="#{reasonsController.selected.tamil_name}" title="#{bundle.ViewReasonsTitle_tamil_name}"/>
+                        <h:outputText value="#{bundle.ViewReasonsLabel_english_description}"/>
+                        <h:outputText value="#{reasonsController.selected.english_description}" title="#{bundle.ViewReasonsTitle_english_description}"/>
+                        <h:outputText value="#{bundle.ViewReasonsLabel_sinhala_description}"/>
+                        <h:outputText value="#{reasonsController.selected.sinhala_description}" title="#{bundle.ViewReasonsTitle_sinhala_description}"/>
+                        <h:outputText value="#{bundle.ViewReasonsLabel_tmail_description}"/>
+                        <h:outputText value="#{reasonsController.selected.tmail_description}" title="#{bundle.ViewReasonsTitle_tmail_description}"/>
+                        <h:outputText value="#{bundle.ViewReasonsLabel_id}"/>
+                        <h:outputText value="#{reasonsController.selected.id}" title="#{bundle.ViewReasonsTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ReasonsViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

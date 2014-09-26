@@ -12,6 +12,8 @@
             <h:form id="ProcessViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{processController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProcessLabel_subject}"/>
+                        <h:outputText value="#{processController.selected.subject}" title="#{bundle.ViewProcessTitle_subject}"/>
                         <h:outputText value="#{bundle.ViewProcessLabel_english_name}"/>
                         <h:outputText value="#{processController.selected.english_name}" title="#{bundle.ViewProcessTitle_english_name}"/>
                         <h:outputText value="#{bundle.ViewProcessLabel_sinhala_name}"/>
@@ -24,10 +26,16 @@
                         <h:outputText value="#{processController.selected.sinhala_description}" title="#{bundle.ViewProcessTitle_sinhala_description}"/>
                         <h:outputText value="#{bundle.ViewProcessLabel_tmail_description}"/>
                         <h:outputText value="#{processController.selected.tmail_description}" title="#{bundle.ViewProcessTitle_tmail_description}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_userName}"/>
+                        <h:outputText value="#{processController.selected.userName}" title="#{bundle.ViewProcessTitle_userName}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_password}"/>
+                        <h:outputText value="#{processController.selected.password}" title="#{bundle.ViewProcessTitle_password}"/>
                         <h:outputText value="#{bundle.ViewProcessLabel_branch}"/>
                         <h:outputText value="#{processController.selected.branch}" title="#{bundle.ViewProcessTitle_branch}"/>
                         <h:outputText value="#{bundle.ViewProcessLabel_process_number}"/>
                         <h:outputText value="#{processController.selected.process_number}" title="#{bundle.ViewProcessTitle_process_number}"/>
+                        <h:outputText value="#{bundle.ViewProcessLabel_id}"/>
+                        <h:outputText value="#{processController.selected.id}" title="#{bundle.ViewProcessTitle_id}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="ProcessViewDialog.hide()"/>
                 </h:panelGroup>

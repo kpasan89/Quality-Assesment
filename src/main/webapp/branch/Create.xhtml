@@ -24,6 +24,8 @@
                         <p:inputTextarea rows="4" cols="30" id="sinhala_description" value="#{branchController.selected.sinhala_description}" title="#{bundle.CreateBranchTitle_sinhala_description}" />
                         <p:outputLabel value="#{bundle.CreateBranchLabel_tmail_description}" for="tmail_description" />
                         <p:inputTextarea rows="4" cols="30" id="tmail_description" value="#{branchController.selected.tmail_description}" title="#{bundle.CreateBranchTitle_tmail_description}" />
+                        <p:outputLabel value="#{bundle.CreateBranchLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{branchController.selected.id}" title="#{bundle.CreateBranchTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{branchController.create}" value="#{bundle.Save}" update="display,:BranchListForm:datalist,:growl" oncomplete="handleSubmit(args,'BranchCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="BranchCreateDialog.hide()"/>

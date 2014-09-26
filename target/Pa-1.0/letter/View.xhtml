@@ -12,6 +12,8 @@
             <h:form id="LetterViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{letterController.selected != null}">
+                        <h:outputText value="#{bundle.ViewLetterLabel_subject}"/>
+                        <h:outputText value="#{letterController.selected.subject}" title="#{bundle.ViewLetterTitle_subject}"/>
                         <h:outputText value="#{bundle.ViewLetterLabel_employee}"/>
                         <h:outputText value="#{letterController.selected.employee}" title="#{bundle.ViewLetterTitle_employee}"/>
                         <h:outputText value="#{bundle.ViewLetterLabel_process}"/>
@@ -48,10 +50,12 @@
                         <h:outputText value="#{letterController.selected.posted_at}" title="#{bundle.ViewLetterTitle_posted_at}">
                             <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
                         </h:outputText>
-                        <h:outputText value="#{bundle.ViewLetterLabel_remarks}"/>
-                        <h:outputText value="#{letterController.selected.letter_remarks}" title="#{bundle.ViewLetterTitle_remarks}"/>
+                        <h:outputText value="#{bundle.ViewLetterLabel_letter_remarks}"/>
+                        <h:outputText value="#{letterController.selected.letter_remarks}" title="#{bundle.ViewLetterTitle_letter_remarks}"/>
                         <h:outputText value="#{bundle.ViewLetterLabel_remarks_for_delay}"/>
                         <h:outputText value="#{letterController.selected.remarks_for_delay}" title="#{bundle.ViewLetterTitle_remarks_for_delay}"/>
+                        <h:outputText value="#{bundle.ViewLetterLabel_id}"/>
+                        <h:outputText value="#{letterController.selected.id}" title="#{bundle.ViewLetterTitle_id}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="LetterViewDialog.hide()"/>
                 </h:panelGroup>

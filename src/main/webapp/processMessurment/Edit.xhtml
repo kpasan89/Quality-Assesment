@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProcessMessurmentEditDlg" widgetVar="ProcessMessurmentEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditProcessMessurmentTitle}">
+            <h:form id="ProcessMessurmentEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{processMessurmentController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditProcessMessurmentLabel_process}" for="process" />
+                        <p:selectOneMenu id="process" value="#{processMessurmentController.selected.process}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{processController.itemsAvailableSelectOne}"
+                                           var="processItem"
+                                           itemValue="#{processItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditProcessMessurmentLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{processMessurmentController.selected.id}" title="#{bundle.EditProcessMessurmentTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{processMessurmentController.update}" value="#{bundle.Save}" update="display,:ProcessMessurmentListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ProcessMessurmentEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProcessMessurmentEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

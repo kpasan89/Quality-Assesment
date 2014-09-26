@@ -29,6 +29,12 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmployeeTitle_subject}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subject}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmployeeTitle_english_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.english_name}"/>
@@ -71,9 +77,21 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmployeeTitle_password}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEmployeeTitle_branch}"/>
                             </f:facet>
                             <h:outputText value="#{item.branch}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEmployeeTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{employeeController.prepareCreate}" update=":EmployeeCreateForm" oncomplete="PF('EmployeeCreateDialog').show()"/>

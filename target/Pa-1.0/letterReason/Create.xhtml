@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="LetterReasonCreateDlg" widgetVar="LetterReasonCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateLetterReasonTitle}">
+            <h:form id="LetterReasonCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{letterReasonController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateLetterReasonLabel_letter}" for="letter" />
+                        <p:selectOneMenu id="letter" value="#{letterReasonController.selected.letter}" >
+                            <f:selectItems value="#{letterController.itemsAvailableSelectOne}"
+                                           var="letterItem"
+                                           itemValue="#{letterItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLetterReasonLabel_reasons}" for="reasons" />
+                        <p:selectOneMenu id="reasons" value="#{letterReasonController.selected.reason}" >
+                            <f:selectItems value="#{reasonsController.itemsAvailableSelectOne}"
+                                           var="reasonsItem"
+                                           itemValue="#{reasonsItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateLetterReasonLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{letterReasonController.selected.id}" title="#{bundle.CreateLetterReasonTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{letterReasonController.create}" value="#{bundle.Save}" update="display,:LetterReasonListForm:datalist,:growl" oncomplete="handleSubmit(args,'LetterReasonCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="LetterReasonCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

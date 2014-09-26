@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ReasonsEditDlg" widgetVar="ReasonsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditReasonsTitle}">
+            <h:form id="ReasonsEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{reasonsController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_english_name}" for="english_name" />
+                        <p:inputText id="english_name" value="#{reasonsController.selected.english_name}" title="#{bundle.EditReasonsTitle_english_name}" />
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_sinhala_name}" for="sinhala_name" />
+                        <p:inputText id="sinhala_name" value="#{reasonsController.selected.sinhala_name}" title="#{bundle.EditReasonsTitle_sinhala_name}" />
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_tamil_name}" for="tamil_name" />
+                        <p:inputText id="tamil_name" value="#{reasonsController.selected.tamil_name}" title="#{bundle.EditReasonsTitle_tamil_name}" />
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_english_description}" for="english_description" />
+                        <p:inputTextarea rows="4" cols="30" id="english_description" value="#{reasonsController.selected.english_description}" title="#{bundle.EditReasonsTitle_english_description}" />
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_sinhala_description}" for="sinhala_description" />
+                        <p:inputTextarea rows="4" cols="30" id="sinhala_description" value="#{reasonsController.selected.sinhala_description}" title="#{bundle.EditReasonsTitle_sinhala_description}" />
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_tmail_description}" for="tmail_description" />
+                        <p:inputTextarea rows="4" cols="30" id="tmail_description" value="#{reasonsController.selected.tmail_description}" title="#{bundle.EditReasonsTitle_tmail_description}" />
+                        <p:outputLabel value="#{bundle.EditReasonsLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{reasonsController.selected.id}" title="#{bundle.EditReasonsTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{reasonsController.update}" value="#{bundle.Save}" update="display,:ReasonsListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ReasonsEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ReasonsEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

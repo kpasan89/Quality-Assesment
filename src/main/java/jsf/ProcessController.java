@@ -18,6 +18,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import pdhs.qa.entity.ProcessMessurment;
 
 @Named("processController")
 @SessionScoped
@@ -27,6 +28,9 @@ public class ProcessController implements Serializable {
     private sessionbeans.ProcessFacade ejbFacade;
     private List<Process> items = null;
     private Process selected;
+    String processMeasurmentTextSi;
+    String processMeasurmentTextEn;
+    String processMeasurmentTextTa;
 
     public ProcessController() {
     }
@@ -39,6 +43,24 @@ public class ProcessController implements Serializable {
         this.selected = selected;
     }
 
+    public String getProcessMeasurmentTextEn() {
+        return processMeasurmentTextEn;
+    }
+
+    public void setProcessMeasurmentTextEn(String processMeasurmentTextEn) {
+        this.processMeasurmentTextEn = processMeasurmentTextEn;
+    }
+
+    public String getProcessMeasurmentTextTa() {
+        return processMeasurmentTextTa;
+    }
+
+    public void setProcessMeasurmentTextTa(String processMeasurmentTextTa) {
+        this.processMeasurmentTextTa = processMeasurmentTextTa;
+    }
+
+    
+    
     protected void setEmbeddableKeys() {
     }
 
@@ -55,6 +77,27 @@ public class ProcessController implements Serializable {
         return selected;
     }
 
+    public String getProcessMeasurmentTextSi() {
+        return processMeasurmentTextSi;
+    }
+
+    public void setProcessMeasurmentTextSi(String processMeasurmentTextSi) {
+        this.processMeasurmentTextSi = processMeasurmentTextSi;
+    }
+
+    public void addMeasurment(){
+        if(selected==null){
+            JsfUtil.addErrorMessage("Process");
+            return;
+        }
+        ProcessMessurment pm = new ProcessMessurment();
+        pm.setNameEn(processMeasurmentTextEn);
+        pm.setNameSi(processMeasurmentTextSi);
+        pm.setNameTa(processMeasurmentTextTa);
+        pm.setProcess(selected);
+        getSelected().getProcessMessurments().add(pm);
+    }
+    
     public void create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("ProcessCreated"));
         if (!JsfUtil.isValidationFailed()) {

@@ -6,6 +6,7 @@ import jsf.util.JsfUtil.PersistAction;
 import sessionbeans.LetterFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +19,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import pdhs.qa.entity.LetterProcessMessurment;
+import pdhs.qa.entity.LetterReason;
+import pdhs.qa.entity.ProcessMessurment;
 
 @Named("letterController")
 @SessionScoped
@@ -27,6 +31,39 @@ public class LetterController implements Serializable {
     private sessionbeans.LetterFacade ejbFacade;
     private List<Letter> items = null;
     private Letter selected;
+
+    LetterReason letterReason;
+
+    public LetterReason getLetterReason() {
+        if (letterReason == null) {
+            letterReason = new LetterReason();
+        }
+        return letterReason;
+    }
+
+    public void addLetterReason() {
+        System.out.println("adding letter reason");
+        System.out.println("selected = " + selected);
+        System.out.println("letterReason = " + letterReason);
+        if (selected == null) {
+            JsfUtil.addErrorMessage("Letter ?");
+            return;
+        }
+        if (letterReason == null) {
+            JsfUtil.addErrorMessage("Reason ?");
+            return;
+        }
+        System.out.println("letterReason = " + letterReason);
+        System.out.println("selected.getLetterReasons() = " + selected.getLetterReasons());
+        selected.getLetterReasons().add(letterReason);
+        letterReason.setLetter(selected);
+        System.out.println("selected.getLetterReasons() = " + selected.getLetterReasons());
+        letterReason = new LetterReason();
+    }
+
+    public void setLetterReason(LetterReason letterReason) {
+        this.letterReason = letterReason;
+    }
 
     public LetterController() {
     }
@@ -53,6 +90,28 @@ public class LetterController implements Serializable {
         selected = new Letter();
         initializeEmbeddableKey();
         return selected;
+    }
+
+    public void addLetterProcessMeasurments() {
+        if (selected == null) {
+            JsfUtil.addErrorMessage("Letter ?");
+            return;
+        }
+        List<LetterProcessMessurment> lmps = new ArrayList<>();
+        if(selected.getProcess()==null){
+            selected.setLetterProcessMessurment(lmps);
+            return;
+        }
+        
+        for(ProcessMessurment pm : selected.getProcess().getProcessMessurments()){
+            LetterProcessMessurment lpm = new LetterProcessMessurment();
+            lpm.setLetter(selected);
+            lpm.setProcessMessurment(pm);
+            lmps.add(lpm);
+        }
+        selected.setLetterProcessMessurment(lmps);
+        
+        
     }
 
     public void create() {

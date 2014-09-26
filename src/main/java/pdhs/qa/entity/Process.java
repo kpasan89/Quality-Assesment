@@ -6,12 +6,17 @@
 package pdhs.qa.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -40,6 +45,29 @@ public class Process implements Serializable {
     Branch branch;
     boolean active;
     String process_number;
+    @ManyToOne
+    Subject subject;
+    @OneToMany(mappedBy = "process", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<ProcessMessurment> processMessurments;
+
+    public List<ProcessMessurment> getProcessMessurments() {
+        if (processMessurments == null) {
+            processMessurments = new ArrayList<>();
+        }
+        return processMessurments;
+    }
+
+    public void setProcessMessurments(List<ProcessMessurment> processMessurments) {
+        this.processMessurments = processMessurments;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
 
     public String getEnglish_name() {
         return english_name;
@@ -128,9 +156,6 @@ public class Process implements Serializable {
     public void setProcess_number(String process_number) {
         this.process_number = process_number;
     }
-    
-    
-    
 
     public Long getId() {
         return id;

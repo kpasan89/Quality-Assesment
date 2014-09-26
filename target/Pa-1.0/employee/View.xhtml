@@ -12,6 +12,8 @@
             <h:form id="EmployeeViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_subject}"/>
+                        <h:outputText value="#{employeeController.selected.subject}" title="#{bundle.ViewEmployeeTitle_subject}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_english_name}"/>
                         <h:outputText value="#{employeeController.selected.english_name}" title="#{bundle.ViewEmployeeTitle_english_name}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_sinhala_name}"/>
@@ -26,6 +28,8 @@
                         <h:outputText value="#{employeeController.selected.tmail_description}" title="#{bundle.ViewEmployeeTitle_tmail_description}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_userName}"/>
                         <h:outputText value="#{employeeController.selected.userName}" title="#{bundle.ViewEmployeeTitle_userName}"/>
+                        <h:outputText value="#{bundle.ViewEmployeeLabel_password}"/>
+                        <h:outputText value="#{employeeController.selected.password}" title="#{bundle.ViewEmployeeTitle_password}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_branch}"/>
                         <h:outputText value="#{employeeController.selected.branch}" title="#{bundle.ViewEmployeeTitle_branch}"/>
                         <h:outputText value="#{bundle.ViewEmployeeLabel_id}"/>

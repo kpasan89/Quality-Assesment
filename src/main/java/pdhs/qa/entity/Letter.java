@@ -3,17 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package pdhs.qa.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
 /**
@@ -22,11 +26,12 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Letter implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    
+
     @ManyToOne
     Employee employee;
     @ManyToOne
@@ -55,6 +60,43 @@ public class Letter implements Serializable {
     boolean letter_delayed;
     @Lob
     String remarks_for_delay;
+    @ManyToOne
+    Subject subject;
+    @OneToMany(mappedBy = "letter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<LetterReason> letterReasons;
+
+    @OneToMany(mappedBy = "letter", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    List<LetterProcessMessurment> letterProcessMessurment;
+
+    public List<LetterReason> getLetterReasons() {
+        if (letterReasons == null) {
+            letterReasons = new ArrayList<>();
+        }
+        return letterReasons;
+    }
+
+    public void setLetterReasons(List<LetterReason> letterReasons) {
+        this.letterReasons = letterReasons;
+    }
+
+    public List<LetterProcessMessurment> getLetterProcessMessurment() {
+        if (letterProcessMessurment == null) {
+            letterProcessMessurment = new ArrayList<>();
+        }
+        return letterProcessMessurment;
+    }
+
+    public void setLetterProcessMessurment(List<LetterProcessMessurment> letterProcessMessurment) {
+        this.letterProcessMessurment = letterProcessMessurment;
+    }
+
+    public Subject getSubject() {
+        return subject;
+    }
+
+    public void setSubject(Subject subject) {
+        this.subject = subject;
+    }
 
     public Employee getEmployee() {
         return employee;
@@ -175,13 +217,6 @@ public class Letter implements Serializable {
     public void setRemarks_for_delay(String remarks_for_delay) {
         this.remarks_for_delay = remarks_for_delay;
     }
-    
-    
-    
-    
-    
-           
-    
 
     public Long getId() {
         return id;
@@ -215,5 +250,5 @@ public class Letter implements Serializable {
     public String toString() {
         return "pdhs.qa.entity.Letter[ id=" + id + " ]";
     }
-    
+
 }

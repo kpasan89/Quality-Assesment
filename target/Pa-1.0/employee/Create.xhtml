@@ -12,6 +12,12 @@
             <h:form id="EmployeeCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{employeeController.selected.subject}" >
+                            <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_english_name}" for="english_name" />
                         <p:inputText id="english_name" value="#{employeeController.selected.english_name}" title="#{bundle.CreateEmployeeTitle_english_name}" />
                         <p:outputLabel value="#{bundle.CreateEmployeeLabel_sinhala_name}" for="sinhala_name" />
@@ -34,6 +40,8 @@
                                            var="branchItem"
                                            itemValue="#{branchItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmployeeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.CreateEmployeeTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{employeeController.create}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmployeeCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeCreateDialog.hide()"/>

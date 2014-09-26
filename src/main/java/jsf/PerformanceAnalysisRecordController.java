@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("performanceAnalysisRecordController")
 @SessionScoped
 public class PerformanceAnalysisRecordController implements Serializable {
 
-    @EJB
-    private sessionbeans.PerformanceAnalysisRecordFacade ejbFacade;
+
+    @EJB private sessionbeans.PerformanceAnalysisRecordFacade ejbFacade;
     private List<PerformanceAnalysisRecord> items = null;
     private PerformanceAnalysisRecord selected;
 
@@ -121,7 +122,7 @@ public class PerformanceAnalysisRecordController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = PerformanceAnalysisRecord.class)
+    @FacesConverter(forClass=PerformanceAnalysisRecord.class)
     public static class PerformanceAnalysisRecordControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class PerformanceAnalysisRecordController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            PerformanceAnalysisRecordController controller = (PerformanceAnalysisRecordController) facesContext.getApplication().getELResolver().
+            PerformanceAnalysisRecordController controller = (PerformanceAnalysisRecordController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "performanceAnalysisRecordController");
             return controller.getPerformanceAnalysisRecord(getKey(value));
         }

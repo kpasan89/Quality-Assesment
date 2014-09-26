@@ -29,6 +29,12 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListLetterTitle_subject}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subject}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListLetterTitle_employee}"/>
                             </f:facet>
                             <h:outputText value="#{item.employee}"/>
@@ -113,7 +119,7 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListLetterTitle_remarks}"/>
+                                <h:outputText value="#{bundle.ListLetterTitle_letter_remarks}"/>
                             </f:facet>
                             <h:outputText value="#{item.letter_remarks}"/>
                         </p:column>

@@ -29,6 +29,12 @@
 
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcessTitle_subject}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.subject}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProcessTitle_english_name}"/>
                             </f:facet>
                             <h:outputText value="#{item.english_name}"/>
@@ -62,6 +68,18 @@
                                 <h:outputText value="#{bundle.ListProcessTitle_tmail_description}"/>
                             </f:facet>
                             <h:outputText value="#{item.tmail_description}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcessTitle_userName}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.userName}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListProcessTitle_password}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">

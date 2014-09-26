@@ -12,6 +12,13 @@
             <h:form id="EmployeeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{employeeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_subject}" for="subject" />
+                        <p:selectOneMenu id="subject" value="#{employeeController.selected.subject}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{subjectController.itemsAvailableSelectOne}"
+                                           var="subjectItem"
+                                           itemValue="#{subjectItem}"/>
+                        </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.EditEmployeeLabel_english_name}" for="english_name" />
                         <p:inputText id="english_name" value="#{employeeController.selected.english_name}" title="#{bundle.EditEmployeeTitle_english_name}" />
                         <p:outputLabel value="#{bundle.EditEmployeeLabel_sinhala_name}" for="sinhala_name" />
@@ -35,6 +42,8 @@
                                            var="branchItem"
                                            itemValue="#{branchItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEmployeeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{employeeController.selected.id}" title="#{bundle.EditEmployeeTitle_id}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{employeeController.update}" value="#{bundle.Save}" update="display,:EmployeeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EmployeeEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EmployeeEditDialog.hide()"/>
